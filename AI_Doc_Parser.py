@@ -19,14 +19,14 @@ class InvoiceData(BaseModel):
     vendor_name: str = Field(description="Name of the Company/Vendor Issuing the Invoice")
     invoice_number: str = Field(description="Unique Identifier Number of the Invoice")
     invoice_date: str = Field(description="Invoice Issue Date (DD-MM-YYYY)")
-    due_date: Optional[str] = Field(defualt=None, description="Payment Due Date of the Invoice (DD-MM-YYYY)")
-    currency: str = Field(defautl="INR", description="Currency Symbol or 3 Letter Code")
+    due_date: Optional[str] = Field(default=None, description="Payment Due Date of the Invoice (DD-MM-YYYY)")
+    currency: str = Field(default="INR", description="Currency Symbol or 3 Letter Code")
     line_items: List[LineItem] = Field(description="List of all Product or Service Line Items in the Invoice")
     subtotal: Optional[float] = Field(default=None, description="Subtotal of the Invoice Amount")
-    tax_amount: Optional[float] = Field(defualt=None, description="Total Tax Amount on Invoice Amount")
+    tax_amount: Optional[float] = Field(default=None, description="Total Tax Amount on Invoice Amount")
     total_amount: float = Field(description="Final Total Amount of the Invoice")
-    
-    
+
+
 def parse_invoice_pdf(invoice_file_path):
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
     
@@ -46,7 +46,7 @@ def parse_invoice_pdf(invoice_file_path):
         )
     )
     
-    return llm_response.parsed
+    return llm_response
 
 result = parse_invoice_pdf("invoice.pdf")
 print(result)
