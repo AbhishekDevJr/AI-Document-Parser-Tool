@@ -17,13 +17,17 @@ class ExperienceDetails(BaseModel):
     description: str = Field(description="Description or Summary of the Work that the Candidate has done at that Company")
 
 class ProjectDetails(BaseModel):
-    pass
+    project_name: str = Field(description="Name of the Project built by the Candidate")
+    description: str = Field(description="Descrption of the Project built by the Candidate")
+    project_url: Optional[str] = Field(default=None, description="URL of the Project built by the Candidate")
 
 class SkillDetails(BaseModel):
-    pass
+    skill_name: str = Field(description="Name of the Skill Possessed by the Candidate")
 
 class EducationDetails(BaseModel):
-    pass
+    qualification_name: str = Field(description="Name of the Qualification completed by the Candidate")
+    institute_name: str = Field(description="Name of the Institute from where Candidate completed the Qualification")
+    score: str = Field(description="Score or Marks scored by the Candidate to Qualify")
 
 class CandidateDetails(BaseModel):
     name: str = Field(description="Name of the Candidate")
